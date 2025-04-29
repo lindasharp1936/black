@@ -2,23 +2,65 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Auto New Tab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Переходим…</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: Arial, sans-serif; }
+    body {
+      background: url('image1.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 767px) {
+      body {
+        background: url('image2.png') no-repeat center center fixed;
+        background-size: cover;
+      }
+    }
+    .overlay {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 90%;
+    }
+    h1 {
+      color: #3F51B5;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+    p {
+      color: #333;
+      font-size: 16px;
+    }
+    a {
+      color: #FF4081;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
   <script>
     window.addEventListener('load', () => {
+      const messageEl = document.getElementById('message');
       const newTab = window.open('https://spingo.run', '_blank');
       if (newTab) {
-        // Если не заблокировано – даём вопроснику фокус
         newTab.focus();
       } else {
-        // Если блокируется – показываем ссылку
-        const hint = document.createElement('p');
-        hint.innerHTML = 'Если новая вкладка не открылась, <a href="https://spingo.run" target="_blank">нажмите здесь</a>.';
-        document.body.appendChild(hint);
+        messageEl.innerHTML = 'Новая вкладка была заблокирована.<br><a href="https://spingo.run" target="_blank" rel="noopener">Нажмите здесь</a>, чтобы открыть.';
       }
     });
   </script>
 </head>
 <body>
-  <p>Сейчас должна открыться новая вкладка…</p>
+  <div class="overlay">
+    <h1 id="message">Сейчас откроется новая вкладка…</h1>
+    <p>Если этого не произошло автоматически, нажмите на ссылку ниже:</p>
+    <p><a href="https://spingo.run" target="_blank" rel="noopener">Открыть SPINGO.RUN</a></p>
+  </div>
 </body>
 </html>
