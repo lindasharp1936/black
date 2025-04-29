@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Переходим…</title>
+  <title>Quiz Redirect</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; font-family: Arial, sans-serif; }
@@ -22,45 +22,56 @@
     }
     .overlay {
       background: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 8px;
+      padding: 30px 20px;
+      border-radius: 10px;
       text-align: center;
       max-width: 90%;
+      width: 400px;
     }
-    h1 {
-      color: #3F51B5;
-      margin-bottom: 12px;
+    .overlay h1 {
       font-size: 24px;
+      margin-bottom: 15px;
+      color: #FFD700;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
     }
-    p {
-      color: #333;
+    .overlay p {
       font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
     }
-    a {
-      color: #FF4081;
+    .overlay a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #FF4081;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
       text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    a:hover {
-      text-decoration: underline;
+    .overlay a:hover {
+      background-color: #E03570;
     }
   </style>
   <script>
     window.addEventListener('load', () => {
-      const messageEl = document.getElementById('message');
-      const newTab = window.open('https://spingo.run', '_blank');
+      const message = document.getElementById('message');
+      const link = document.getElementById('open-link');
+      const newTab = window.open('https://spingo.rest', '_blank');
       if (newTab) {
         newTab.focus();
       } else {
-        messageEl.innerHTML = 'Новая вкладка была заблокирована.<br><a href="https://spingo.run" target="_blank" rel="noopener">Нажмите здесь</a>, чтобы открыть.';
+        message.textContent = 'Popup blocked. Please use the button below.';
       }
     });
   </script>
 </head>
 <body>
   <div class="overlay">
-    <h1 id="message">Сейчас откроется новая вкладка…</h1>
-    <p>Если этого не произошло автоматически, нажмите на ссылку ниже:</p>
-    <p><a href="https://spingo.run" target="_blank" rel="noopener">Открыть SPINGO.RUN</a></p>
+    <h1 id="message">OPENING QUIZ IN A NEW TAB…</h1>
+    <p>If it doesn't open automatically, use the button below:</p>
+    <a id="open-link" href="https://spingo.rest" target="_blank" rel="noopener">OPEN QUIZ NOW</a>
   </div>
 </body>
 </html>
