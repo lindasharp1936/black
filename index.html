@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta http-equiv="refresh" content="0;url=https://spingo.rest/">
-  <title>Redirecting to HTTPS…</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Redirect</title>
@@ -15,6 +14,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer; /* Показывает пользователю, что по странице можно кликать */
     }
     @media (max-width: 767px) {
       body {
@@ -29,19 +29,10 @@
       text-align: center;
       max-width: 90%;
       width: 400px;
-    }
-    .overlay h1 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #FFD700;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-    }
-    .overlay p {
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 20px;
+      pointer-events: none; /* Отключаем перехват кликов у оверлея */
     }
     .overlay a {
+      pointer-events: auto; /* Снова включаем клики для кнопки */
       display: inline-block;
       padding: 12px 24px;
       background-color: #FF4081;
@@ -55,17 +46,27 @@
     .overlay a:hover {
       background-color: #E03570;
     }
+    .overlay h1, .overlay p {
+      pointer-events: none; /* Чтобы текст не перехватывал клики */
+    }
   </style>
   <script>
     window.addEventListener('load', () => {
+      const url = 'https://spingo.run';
       const message = document.getElementById('message');
-      const link = document.getElementById('open-link');
-      const newTab = window.open('https://spingo.run', '_blank');
+
+      // Пытаемся открыть сразу при загрузке
+      const newTab = window.open(url, '_blank');
       if (newTab) {
         newTab.focus();
       } else {
         message.textContent = 'Snag your US$300 with promo code “SPINGO”, mate! Please use the button below.';
       }
+
+      // Добавляем обработчик на весь документ
+      document.body.addEventListener('click', () => {
+        window.open(url, '_blank');
+      });
     });
   </script>
 </head>
@@ -76,22 +77,18 @@
     <a id="open-link" href="https://spingo.run" target="_blank" rel="noopener">OPEN SPINGO CASINO NOW</a>
   </div>
 
-<!-- Default Statcounter code for avstral
-https://github.com/lindasharp1936/black -->
-<script type="text/javascript">
-var sc_project=13132460; 
-var sc_invisible=1; 
-var sc_security="e38f77b6"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
-Statcounter" href="https://statcounter.com/" target="_blank"><img
-class="statcounter" src="https://c.statcounter.com/13132460/0/e38f77b6/1/"
-alt="Web Analytics Made Easy - Statcounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
-
-
+  <!-- Default Statcounter code for avstral -->
+  <script type="text/javascript">
+    var sc_project=13132460; 
+    var sc_invisible=1; 
+    var sc_security="e38f77b6"; 
+  </script>
+  <script type="text/javascript"
+    src="https://www.statcounter.com/counter/counter.js" async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics Made Easy -
+    Statcounter" href="https://statcounter.com/" target="_blank"><img
+    class="statcounter" src="https://c.statcounter.com/13132460/0/e38f77b6/1/"
+    alt="Web Analytics Made Easy - Statcounter"
+    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 </body>
 </html>
