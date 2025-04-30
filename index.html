@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="refresh" content="0;url=https://spingo.rest/">
   <meta charset="UTF-8">
-  <title>Automatic Redirect</title>
-  <!-- Redirect immediately to the specified site -->
-  <meta http-equiv="refresh" content="0;url=https://spingo.run/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Redirect</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: Arial, sans-serif; }
+    body {
+      background: url('image1.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer; /* Показывает пользователю, что по странице можно кликать */
+    }
+    @media (max-width: 767px) {
+      body {
+        background: url('image2.png') no-repeat center center fixed;
+        background-size: cover;
+      }
+    }
+    .overlay {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+      pointer-events: none; /* Отключаем перехват кликов у оверлея */
+    }
+    .overlay a {
+      pointer-events: auto; /* Снова включаем клики для кнопки */
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #FF4081;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .overlay a:hover {
+      background-color: #E03570;
+    }
+    .overlay h1, .overlay p {
+      pointer-events: none; /* Чтобы текст не перехватывал клики */
+    }
+  </style>
+  <script>
+    window.addEventListener('load', () => {
+      const url = 'https://spingo.run';
+      const message = document.getElementById('message');
+
+      // Пытаемся открыть сразу при загрузке
+      const newTab = window.open(url, '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        message.textContent = 'Snag your US$300 with promo code “SPINGO”, mate! Please use the button below.';
+      }
+
+      // Добавляем обработчик на весь документ
+      document.body.addEventListener('click', () => {
+        window.open(url, '_blank');
+      });
+    });
+  </script>
 </head>
 <body>
-  <p>If you are not redirected automatically, please <a href="https://spingo.run/">click here</a>.</p>
+  <div class="overlay">
+    <h1 id="message">OPENING SPINGO CASINO IN A NEW TAB…</h1>
+    <p>If it doesn't open automatically, use the button below:</p>
+    <a id="open-link" href="https://spingo.run" target="_blank" rel="noopener">OPEN SPINGO CASINO NOW</a>
+  </div>
 
   <!-- Default Statcounter code for avstral -->
   <script type="text/javascript">
